@@ -8,6 +8,9 @@ void main() {
 
 class ResourceApp extends ChangeNotifier {
   var woodColor = const Color.fromRGBO(150, 121, 105, 1);
+  var ironOreColor = const Color.fromRGBO(206, 212, 218, 1);
+  var copperOreColor = const Color.fromRGBO(217, 72, 15, 1);
+  var coalColor = const Color.fromRGBO(0, 0, 0, 1);
   var wood = 0;
   var ironOre = 0;
   var copperOre = 0;
@@ -62,8 +65,23 @@ class ResourcePage extends StatefulWidget {
 
 class _ResourceState extends State<ResourcePage> {
   void _incrementCounterWood() {
-    var appState = Provider.of<ResourceApp>(context, listen: false);
-    appState.incrementWood();
+    var appStateWood = Provider.of<ResourceApp>(context, listen: false);
+    appStateWood.incrementWood();
+  }
+
+  void _incrementCounterIronOre() {
+    var appStateIronOre = Provider.of<ResourceApp>(context, listen: false);
+    appStateIronOre.incrementIronOre();
+  }
+
+  void _incrementCounterCopperOre() {
+    var appStateCopperOre = Provider.of<ResourceApp>(context, listen: false);
+    appStateCopperOre.incrementCopperOre();
+  }
+
+  void _incrementCounterCoal() {
+    var appStateCoal = Provider.of<ResourceApp>(context, listen: false);
+    appStateCoal.incrementCoal();
   }
 
   void _navigate() {
@@ -87,30 +105,114 @@ class _ResourceState extends State<ResourcePage> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 200,
-            height: 200,
-            color: Provider.of<ResourceApp>(context).woodColor,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: Column(children: [
-                    const Text('Wood'),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _incrementCounterWood();
-                        },
-                        child: Text(
-                            Provider.of<ResourceApp>(context).wood.toString()),
-                      ),
+          child: GridView.count(
+            crossAxisCount: 4,
+            children: [
+              Container(
+                width: 200,
+                height: 200,
+                color: Provider.of<ResourceApp>(context).woodColor,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Column(children: [
+                        const Text('Wood'),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _incrementCounterWood();
+                            },
+                            child: Text(Provider.of<ResourceApp>(context)
+                                .wood
+                                .toString()),
+                          ),
+                        )
+                      ]),
                     )
-                  ]),
-                )
-              ],
-            ),
+                  ],
+                ),
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                color: Provider.of<ResourceApp>(context).ironOreColor,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Column(children: [
+                        const Text('Iron-ore'),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _incrementCounterIronOre();
+                            },
+                            child: Text(Provider.of<ResourceApp>(context)
+                                .ironOre
+                                .toString()),
+                          ),
+                        )
+                      ]),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                color: Provider.of<ResourceApp>(context).copperOreColor,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Column(children: [
+                        const Text('Copper-ore'),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _incrementCounterCopperOre();
+                            },
+                            child: Text(Provider.of<ResourceApp>(context)
+                                .copperOre
+                                .toString()),
+                          ),
+                        )
+                      ]),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                color: Provider.of<ResourceApp>(context).coalColor,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Column(children: [
+                        const Text('Coal'),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _incrementCounterCoal();
+                            },
+                            child: Text(Provider.of<ResourceApp>(context)
+                                .coal
+                                .toString()),
+                          ),
+                        )
+                      ]),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
