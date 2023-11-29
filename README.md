@@ -1,12 +1,15 @@
 # game_paper_clic
-A new Flutter project.
-
-## Cloner le projet
+	
+## SSH project Clone 
 ``` 
-git clone url
+git clone git@github.com:davg80/game_paper_clic.git
+```
+## https project Clone 
+``` 
+git clone https://github.com/davg80/game_paper_clic.git
 ```
 
-## _Objectifs_:
+## _Objectifs du projet_:
 1- Clique sur chaque ressource pour récolter une unité
 
 2- Débloque des recettes et de nouveaux éléments de gameplay pour progresser dans le jeu
