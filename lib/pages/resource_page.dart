@@ -42,7 +42,7 @@ class _ResourceState extends State<ResourcePage> {
       appBar: AppBar(
         title: Text(widget.title),
         leading: IconButton(
-          icon: const Icon(Icons.local_atm_outlined),
+          icon: Image.asset('assets/images/money.gif'),
           onPressed: () {
             _navigate();
           },
@@ -50,162 +50,190 @@ class _ResourceState extends State<ResourcePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        color: Provider.of<ResourceApp>(context).woodColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Column(children: [
-                                Image.asset(
-                                  'assets/images/wood.png',
-                                  width: 100,
-                                  height: 100,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      _incrementCounterWood();
-                                    },
-                                    child: Text(
-                                        Provider.of<ResourceApp>(context)
-                                            .wood
-                                            .toString()),
-                                  ),
-                                )
-                              ]),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        color: Provider.of<ResourceApp>(context).ironOreColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Column(children: [
-                                Image.asset(
-                                  'assets/images/iron-ore.png',
-                                  width: 100,
-                                  height: 100,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      _incrementCounterIronOre();
-                                    },
-                                    child: Text(
-                                        Provider.of<ResourceApp>(context)
-                                            .ironOre
-                                            .toString()),
-                                  ),
-                                )
-                              ]),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        color: Provider.of<ResourceApp>(context).copperOreColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Column(children: [
-                                Image.asset(
-                                  'assets/images/copper-ore.png',
-                                  width: 100,
-                                  height: 100,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      _incrementCounterCopperOre();
-                                    },
-                                    child: Text(
-                                        Provider.of<ResourceApp>(context)
-                                            .copperOre
-                                            .toString()),
-                                  ),
-                                )
-                              ]),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        color: Provider.of<ResourceApp>(context).coalColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Column(children: [
-                                Image.asset(
-                                  'assets/images/coal.png',
-                                  width: 100,
-                                  height: 100,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      _incrementCounterCoal();
-                                    },
-                                    child: Text(
-                                        Provider.of<ResourceApp>(context)
-                                            .coal
-                                            .toString()),
-                                  ),
-                                )
-                              ]),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+        child: Column(
+          children: [
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 4,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.all(MediaQuery.of(context).size.width / 400),
+                    child: containerWood(context),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.all(MediaQuery.of(context).size.width / 400),
+                    child: containerIronOre(context),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.all(MediaQuery.of(context).size.width / 400),
+                    child: containerCopperOre(context),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.all(MediaQuery.of(context).size.width / 400),
+                    child: containerCoal(context),
+                  ),
+                ],
               ),
-              Container(
-                  transform: Matrix4.translationValues(
-                      0.0, -(MediaQuery.of(context).size.height / 3), 0.0),
-                  child: Text(
-                      'Total ${Provider.of<ResourceApp>(context).getTotal()}'))
-            ],
-          ),
+            ),
+            containerTotalResource(context)
+          ],
         ),
       ),
     );
+  }
+
+  Container containerCoal(BuildContext context) {
+    return Container(
+      width: 200,
+      height: 200,
+      color: Provider.of<ResourceApp>(context).coalColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Column(children: [
+              Image.asset(
+                'assets/images/coal.png',
+                width: 100,
+                height: 100,
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.all(MediaQuery.of(context).size.width / 400),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _incrementCounterCoal();
+                  },
+                  child:
+                      Text(Provider.of<ResourceApp>(context).coal.toString()),
+                ),
+              )
+            ]),
+          )
+        ],
+      ),
+    );
+  }
+
+  Container containerCopperOre(BuildContext context) {
+    return Container(
+      width: 200,
+      height: 200,
+      color: Provider.of<ResourceApp>(context).copperOreColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Column(children: [
+              Image.asset(
+                'assets/images/copper-ore.png',
+                width: 100,
+                height: 100,
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.all(MediaQuery.of(context).size.height / 400),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _incrementCounterCopperOre();
+                  },
+                  child: Text(
+                      Provider.of<ResourceApp>(context).copperOre.toString()),
+                ),
+              )
+            ]),
+          )
+        ],
+      ),
+    );
+  }
+
+  Container containerIronOre(BuildContext context) {
+    return Container(
+      width: 200,
+      height: 200,
+      color: Provider.of<ResourceApp>(context).ironOreColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Column(children: [
+              Image.asset(
+                'assets/images/iron-ore.png',
+                width: 100,
+                height: 100,
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.all(MediaQuery.of(context).size.height / 400),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _incrementCounterIronOre();
+                  },
+                  child: Text(
+                      Provider.of<ResourceApp>(context).ironOre.toString()),
+                ),
+              )
+            ]),
+          )
+        ],
+      ),
+    );
+  }
+
+  Container containerWood(BuildContext context) {
+    return Container(
+      width: 200,
+      height: 200,
+      color: Provider.of<ResourceApp>(context).woodColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Column(children: [
+              Image.asset(
+                'assets/images/wood.png',
+                width: 100,
+                height: 100,
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.all(MediaQuery.of(context).size.height / 400),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _incrementCounterWood();
+                  },
+                  child:
+                      Text(Provider.of<ResourceApp>(context).wood.toString()),
+                ),
+              )
+            ]),
+          )
+        ],
+      ),
+    );
+  }
+
+  Container containerTotalResource(BuildContext context) {
+    return Container(
+        color: Colors.deepOrangeAccent,
+        transform: Matrix4.translationValues(
+            0.0, -(MediaQuery.of(context).size.height / 3), 0.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/money.gif',
+              width: 100,
+              height: 100,
+            ),
+            Text('Total ${Provider.of<ResourceApp>(context).getTotal()}'),
+          ],
+        ));
   }
 }

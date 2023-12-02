@@ -15,7 +15,7 @@ class _ReceipePageState extends State<ReceipePage> {
         title: const Text('Recettes'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Column(children: []),
+      body: const Column(children: []),
     );
   }
 }
