@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:game_paper_clic/models/receipe.dart';
 
 class ResourceApp extends ChangeNotifier {
   Color woodColor = const Color.fromRGBO(150, 121, 105, 1);
@@ -39,7 +40,9 @@ class ResourceApp extends ChangeNotifier {
   // Receipes
   Future loadData() async {
     final jsonString = await rootBundle.loadString('assets/data.json');
-    final decodedJson = json.decode(jsonString);
-    return decodedJson;
+    final listOfJsonElements = json.decode(jsonString) as List;
+    return listOfJsonElements
+        .map((jsonElement) => Receipe.fromJson(jsonElement))
+        .toList();
   }
 }

@@ -33,7 +33,16 @@ class _ReceipePageState extends State<ReceipePage> {
                       return const Text(
                           'Une erreur est survenue lors du chargement des données.');
                     } else if (snapshot.hasData) {
-                      return Text(snapshot.data.toString());
+                      return ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                              child: ListTile(
+                            title: Text(snapshot.data[index].name),
+                            subtitle: Text(snapshot.data[index].description),
+                          ));
+                        },
+                      );
                     } else {
                       return const Text('Aucune donnée disponible.');
                     }

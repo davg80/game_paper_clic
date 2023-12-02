@@ -13,7 +13,7 @@ String receipeToJson(List<Receipe> data) =>
 class Receipe {
   String name;
   int id;
-  Resources resources;
+  List<Resource> resources;
   String type;
   String description;
   bool completed;
@@ -30,7 +30,8 @@ class Receipe {
   factory Receipe.fromJson(Map<String, dynamic> json) => Receipe(
         name: json["name"],
         id: json["id"],
-        resources: Resources.fromJson(json["resources"]),
+        resources: List<Resource>.from(
+            json["resources"].map((x) => Resource.fromJson(x))),
         type: json["type"],
         description: json["description"],
         completed: json["completed"],
@@ -39,57 +40,29 @@ class Receipe {
   Map<String, dynamic> toJson() => {
         "name": name,
         "id": id,
-        "resources": resources.toJson(),
+        "resources": List<dynamic>.from(resources.map((x) => x.toJson())),
         "type": type,
         "description": description,
         "completed": completed,
       };
 }
 
-class Resources {
-  int? wood;
-  int? metalRod;
-  int? ironOre;
-  int? copperOre;
-  int? ironIngot;
-  int? copperIngot;
-  int? ironPlate;
-  int? electricWire;
-  int? metalPlate;
+class Resource {
+  String name;
+  int quantity;
 
-  Resources({
-    this.wood,
-    this.metalRod,
-    this.ironOre,
-    this.copperOre,
-    this.ironIngot,
-    this.copperIngot,
-    this.ironPlate,
-    this.electricWire,
-    this.metalPlate,
+  Resource({
+    required this.name,
+    required this.quantity,
   });
 
-  factory Resources.fromJson(Map<String, dynamic> json) => Resources(
-        wood: json["Wood"],
-        metalRod: json["Metal rod"],
-        ironOre: json["Iron-ore"],
-        copperOre: json["Copper-ore"],
-        ironIngot: json["Iron ingot"],
-        copperIngot: json["Copper ingot"],
-        ironPlate: json["Iron plate"],
-        electricWire: json["Electric wire"],
-        metalPlate: json["Metal plate"],
+  factory Resource.fromJson(Map<String, dynamic> json) => Resource(
+        name: json["name"],
+        quantity: json["quantity"],
       );
 
   Map<String, dynamic> toJson() => {
-        "Wood": wood,
-        "Metal rod": metalRod,
-        "Iron-ore": ironOre,
-        "Copper-ore": copperOre,
-        "Iron ingot": ironIngot,
-        "Copper ingot": copperIngot,
-        "Iron plate": ironPlate,
-        "Electric wire": electricWire,
-        "Metal plate": metalPlate,
+        "name": name,
+        "quantity": quantity,
       };
 }
