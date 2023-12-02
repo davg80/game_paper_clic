@@ -14,6 +14,7 @@ class ResourceApp extends ChangeNotifier {
   Resource coal = Resource(name: 'coal', quantity: 0);
 
   List<Receipe> inventory = [];
+  List<Receipe> receipes = [];
 
   void incrementWood() {
     wood.quantity++;
@@ -46,8 +47,10 @@ class ResourceApp extends ChangeNotifier {
   Future loadData() async {
     final jsonString = await rootBundle.loadString('assets/data.json');
     final listOfJsonElements = json.decode(jsonString) as List;
-    return listOfJsonElements
-        .map((jsonElement) => Receipe.fromJson(jsonElement))
-        .toList();
+    return listOfJsonElements.map((jsonElement) {
+      Receipe receipe = Receipe.fromJson(jsonElement);
+      receipes.add(receipe);
+      return Receipe.fromJson(jsonElement);
+    }).toList();
   }
 }
