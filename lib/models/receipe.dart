@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final receipe = receipeFromJson(jsonString);
-
 import 'dart:convert';
 
 List<Receipe> receipeFromJson(String str) =>
@@ -13,6 +9,7 @@ String receipeToJson(List<Receipe> data) =>
 class Receipe {
   String name;
   int id;
+  String picture;
   List<Resource> resources;
   String type;
   String description;
@@ -21,6 +18,7 @@ class Receipe {
   Receipe({
     required this.name,
     required this.id,
+    required this.picture,
     required this.resources,
     required this.type,
     required this.description,
@@ -30,6 +28,7 @@ class Receipe {
   factory Receipe.fromJson(Map<String, dynamic> json) => Receipe(
         name: json["name"],
         id: json["id"],
+        picture: json["picture"],
         resources: List<Resource>.from(
             json["resources"].map((x) => Resource.fromJson(x))),
         type: json["type"],
@@ -40,6 +39,7 @@ class Receipe {
   Map<String, dynamic> toJson() => {
         "name": name,
         "id": id,
+        "picture": picture,
         "resources": List<dynamic>.from(resources.map((x) => x.toJson())),
         "type": type,
         "description": description,

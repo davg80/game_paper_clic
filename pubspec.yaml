@@ -27,4 +27,14 @@ flutter:
     - assets/images/miner.png
     - assets/images/money.gif
     - assets/data.json
+    - assets/images/receipes/axe.png
+    - assets/images/receipes/pickaxe.png
+    - assets/images/receipes/copper-ingot.png
+    - assets/images/receipes/iron-ingot.png
+    - assets/images/receipes/metal-rod.png
+    - assets/images/receipes/electric-wire.png
+    - assets/images/receipes/mine.png
+    - assets/images/receipes/foundry.png
+    - assets/images/receipes/iron-plate.png
+
 

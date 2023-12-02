@@ -2,6 +2,7 @@
   {
     "name": "Axe",
     "id": 1,
+    "picture": "assets/images/receipes/axe.png", 
     "resources": [
       {"name": "Wood", "quantity":2},
       {"name": "Metal rod", "quantity":2}
@@ -13,6 +14,7 @@
   {
     "name": "Pickaxe",
     "id": 2,
+    "picture": "assets/images/receipes/pickaxe.png",
     "resources": [
       {"name": "Wood", "quantity":2},
       {"name": "Metal rod", "quantity":3}
@@ -24,6 +26,7 @@
   {
     "name": "Iron ingot",
     "id": 3,
+    "picture": "assets/images/receipes/iron-ingot.png",
     "resources": [
       {"name": "Iron-ore", "quantity":1}
     ],
@@ -34,6 +37,7 @@
   {
     "name": "Iron plate",
     "id": 4,
+    "picture": "assets/images/receipes/iron-plate.png",
     "resources": [
       {"name": "Iron-ore", "quantity":3}
     ],
@@ -44,6 +48,7 @@
   {
     "name": "Copper ingot",
     "id": 5,
+    "picture": "assets/images/receipes/copper-ingot.png",
     "resources": [
       {"name": "Copper-ore", "quantity":1}
     ],
@@ -54,6 +59,7 @@
   {
     "name": "Metal rod",
     "id": 6,
+    "picture": "assets/images/receipes/metal-rod.png",
     "resources": [
       {"name": "Iron ingot", "quantity":1}
     ],
@@ -64,6 +70,7 @@
   {
     "name": "Electric wire",
     "id": 7,
+    "picture": "assets/images/receipes/electric-wire.png",
     "resources": [
       {"name": "Copper ingot", "quantity":1}
     ],
@@ -74,6 +81,7 @@
   {
     "name": "Minor",
     "id": 8,
+    "picture": "assets/images/receipes/mine.png",
     "resources": [
       {"name": "Iron plate", "quantity":10},
       {"name": "Electric wire","quantity": 5}
@@ -85,6 +93,7 @@
   {
     "name": "Foundry",
     "id": 9,
+    "picture": "assets/images/receipes/foundry.png",
     "resources": [
       {"name": "Electric wire", "quantity":5},
       {"name": "Metal plate", "quantity": 8}

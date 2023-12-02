@@ -37,10 +37,30 @@ class _ReceipePageState extends State<ReceipePage> {
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, index) {
                           return Card(
-                              child: ListTile(
-                            title: Text(snapshot.data[index].name),
-                            subtitle: Text(snapshot.data[index].description),
-                          ));
+                            child: ListTile(
+                              title: Text(snapshot.data[index].name),
+                              subtitle: Text(
+                                snapshot.data[index].description,
+                              ),
+                              leading: Image.asset(
+                                snapshot.data[index].picture,
+                                width: 100,
+                                height: 100,
+                              ),
+                              trailing: ElevatedButton(
+                                onPressed: () {},
+                                child: snapshot.data[index].completed
+                                    ? const Icon(
+                                        Icons.publish_outlined,
+                                        color: Colors.lightGreen,
+                                      )
+                                    : const Icon(
+                                        Icons.unpublished_outlined,
+                                        color: Colors.redAccent,
+                                      ),
+                              ),
+                            ),
+                          );
                         },
                       );
                     } else {
