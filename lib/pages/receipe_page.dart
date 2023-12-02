@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_paper_clic/models/receipe.dart';
 import 'package:game_paper_clic/pages/inventory_page.dart';
 import 'package:game_paper_clic/provider/resource_app.dart';
 import 'package:provider/provider.dart';
@@ -140,37 +141,78 @@ class _ReceipePageState extends State<ReceipePage> {
                       return const Text(
                           'Une erreur est survenue lors du chargement des données.');
                     } else if (snapshot.hasData) {
+                      final receipesList = snapshot.data;
                       return ListView.builder(
-                        itemCount: snapshot.data.length,
+                        itemCount: receipesList.length,
                         itemBuilder: (context, index) {
                           return Card(
-                            child: ListTile(
-                              title: Text(snapshot.data[index].name),
-                              subtitle: Text(
-                                snapshot.data[index].description,
-                              ),
-                              leading: Image.asset(
-                                snapshot.data[index].picture,
-                                width: 100,
-                                height: 100,
-                              ),
-                              trailing: Tooltip(
-                                message: snapshot.data[index].completed
-                                    ? 'Produire'
-                                    : 'En attente...',
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: snapshot.data[index].completed
-                                      ? const Icon(
-                                          Icons.publish_outlined,
-                                          color: Colors.lightGreen,
-                                        )
-                                      : const Icon(
-                                          Icons.unpublished_outlined,
-                                          color: Colors.redAccent,
-                                        ),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Text(receipesList[index].name),
+                                  subtitle: Text(
+                                    receipesList[index].description,
+                                  ),
+                                  leading: Image.asset(
+                                    receipesList[index].picture,
+                                    width: 100,
+                                    height: 100,
+                                  ),
+                                  trailing: Tooltip(
+                                    message: receipesList[index].completed
+                                        ? 'Produire'
+                                        : 'En attente...',
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        print(receipesList[index].resources);
+                                      },
+                                      child: receipesList[index].completed
+                                          ? const Icon(
+                                              Icons.publish_outlined,
+                                              color: Colors.lightGreen,
+                                            )
+                                          : const Icon(
+                                              Icons.unpublished_outlined,
+                                              color: Colors.redAccent,
+                                            ),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                SizedBox(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListView.builder(
+                                      itemCount:
+                                          receipesList[index].resources.length,
+                                      itemBuilder: (context, i) {
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 28.0),
+                                          child: RichText(
+                                            text: TextSpan(
+                                                text: receipesList[index]
+                                                    .resources[i]
+                                                    .name,
+                                                style:
+                                                    DefaultTextStyle.of(context)
+                                                        .style,
+                                                children: <TextSpan>[
+                                                  const TextSpan(
+                                                      text: ' : ',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                  TextSpan(
+                                                      text: receipesList[index]
+                                                          .resources[i]
+                                                          .quantity
+                                                          .toString())
+                                                ]),
+                                          ),
+                                        );
+                                      }),
+                                )
+                              ],
                             ),
                           );
                         },
