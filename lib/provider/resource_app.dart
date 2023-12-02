@@ -8,33 +8,36 @@ class ResourceApp extends ChangeNotifier {
   Color ironOreColor = const Color.fromRGBO(206, 212, 218, 1);
   Color copperOreColor = const Color.fromRGBO(217, 72, 15, 1);
   Color coalColor = const Color.fromRGBO(0, 0, 0, 1);
-  int wood = 0;
-  int ironOre = 0;
-  int copperOre = 0;
-  int coal = 0;
+  Resource wood = Resource(name: 'wood', quantity: 0);
+  Resource ironOre = Resource(name: 'iron-ore', quantity: 0);
+  Resource copperOre = Resource(name: 'copper-ore', quantity: 0);
+  Resource coal = Resource(name: 'coal', quantity: 0);
 
   void incrementWood() {
-    wood++;
+    wood.quantity++;
     notifyListeners();
   }
 
   void incrementIronOre() {
-    ironOre++;
+    ironOre.quantity++;
     notifyListeners();
   }
 
   void incrementCopperOre() {
-    copperOre++;
+    copperOre.quantity++;
     notifyListeners();
   }
 
   void incrementCoal() {
-    coal++;
+    coal.quantity++;
     notifyListeners();
   }
 
   int getTotal() {
-    return wood + ironOre + copperOre + coal;
+    return wood.quantity +
+        ironOre.quantity +
+        copperOre.quantity +
+        coal.quantity;
   }
 
   // Receipes

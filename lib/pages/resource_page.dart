@@ -108,8 +108,10 @@ class _ResourceState extends State<ResourcePage> {
                   onPressed: () {
                     _incrementCounterCoal();
                   },
-                  child:
-                      Text(Provider.of<ResourceApp>(context).coal.toString()),
+                  child: Text(Provider.of<ResourceApp>(context)
+                      .coal
+                      .quantity
+                      .toString()),
                 ),
               )
             ]),
@@ -141,8 +143,10 @@ class _ResourceState extends State<ResourcePage> {
                   onPressed: () {
                     _incrementCounterCopperOre();
                   },
-                  child: Text(
-                      Provider.of<ResourceApp>(context).copperOre.toString()),
+                  child: Text(Provider.of<ResourceApp>(context)
+                      .copperOre
+                      .quantity
+                      .toString()),
                 ),
               )
             ]),
@@ -174,8 +178,10 @@ class _ResourceState extends State<ResourcePage> {
                   onPressed: () {
                     _incrementCounterIronOre();
                   },
-                  child: Text(
-                      Provider.of<ResourceApp>(context).ironOre.toString()),
+                  child: Text(Provider.of<ResourceApp>(context)
+                      .ironOre
+                      .quantity
+                      .toString()),
                 ),
               )
             ]),
@@ -207,8 +213,10 @@ class _ResourceState extends State<ResourcePage> {
                   onPressed: () {
                     _incrementCounterWood();
                   },
-                  child:
-                      Text(Provider.of<ResourceApp>(context).wood.toString()),
+                  child: Text(Provider.of<ResourceApp>(context)
+                      .wood
+                      .quantity
+                      .toString()),
                 ),
               )
             ]),
