@@ -13,6 +13,8 @@ class ResourceApp extends ChangeNotifier {
   Resource copperOre = Resource(name: 'copper-ore', quantity: 0);
   Resource coal = Resource(name: 'coal', quantity: 0);
 
+  List<Receipe> inventory = [];
+
   void incrementWood() {
     wood.quantity++;
     notifyListeners();

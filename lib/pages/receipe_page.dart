@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_paper_clic/pages/inventory_page.dart';
 import 'package:game_paper_clic/provider/resource_app.dart';
 import 'package:provider/provider.dart';
 
@@ -21,94 +22,111 @@ class _ReceipePageState extends State<ReceipePage> {
         child: Column(
           children: [
             Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(20.0),
-                child: Wrap(
-                  children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      color: Provider.of<ResourceApp>(context).woodColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(Provider.of<ResourceApp>(context)
-                              .wood
-                              .name
-                              .toString()),
-                          Text(Provider.of<ResourceApp>(context)
-                              .wood
-                              .quantity
-                              .toString()),
-                        ],
-                      ),
+              color: Colors.white,
+              padding: const EdgeInsets.all(20.0),
+              child: Wrap(
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Provider.of<ResourceApp>(context).woodColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(Provider.of<ResourceApp>(context)
+                            .wood
+                            .name
+                            .toString()),
+                        Text(Provider.of<ResourceApp>(context)
+                            .wood
+                            .quantity
+                            .toString()),
+                      ],
                     ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      color: Provider.of<ResourceApp>(context).ironOreColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(Provider.of<ResourceApp>(context)
-                              .ironOre
-                              .name
-                              .toString()),
-                          Text(Provider.of<ResourceApp>(context)
-                              .ironOre
-                              .quantity
-                              .toString()),
-                        ],
-                      ),
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Provider.of<ResourceApp>(context).ironOreColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(Provider.of<ResourceApp>(context)
+                            .ironOre
+                            .name
+                            .toString()),
+                        Text(Provider.of<ResourceApp>(context)
+                            .ironOre
+                            .quantity
+                            .toString()),
+                      ],
                     ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      color: Provider.of<ResourceApp>(context).copperOreColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(Provider.of<ResourceApp>(context)
-                              .copperOre
-                              .name
-                              .toString()),
-                          Text(Provider.of<ResourceApp>(context)
-                              .copperOre
-                              .quantity
-                              .toString()),
-                        ],
-                      ),
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Provider.of<ResourceApp>(context).copperOreColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(Provider.of<ResourceApp>(context)
+                            .copperOre
+                            .name
+                            .toString()),
+                        Text(Provider.of<ResourceApp>(context)
+                            .copperOre
+                            .quantity
+                            .toString()),
+                      ],
                     ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      color: Provider.of<ResourceApp>(context).coalColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            Provider.of<ResourceApp>(context)
-                                .coal
-                                .name
-                                .toString(),
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            Provider.of<ResourceApp>(context)
-                                .coal
-                                .quantity
-                                .toString(),
-                            style: const TextStyle(color: Colors.white),
-                          )
-                        ],
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Provider.of<ResourceApp>(context).coalColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          Provider.of<ResourceApp>(context)
+                              .coal
+                              .name
+                              .toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        Text(
+                          Provider.of<ResourceApp>(context)
+                              .coal
+                              .quantity
+                              .toString(),
+                          style: const TextStyle(color: Colors.white),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const InventoryPage(),
                       ),
-                    )
-                  ],
-                )),
+                    );
+                  },
+                  child: const Text('Voir mon inventaire'),
+                ),
+              ),
+            ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
@@ -165,7 +183,7 @@ class _ReceipePageState extends State<ReceipePage> {
                   }
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

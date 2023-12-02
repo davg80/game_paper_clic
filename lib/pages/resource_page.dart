@@ -33,7 +33,11 @@ class _ResourceState extends State<ResourcePage> {
 
   void _navigate() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const ReceipePage()));
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ReceipePage(),
+      ),
+    );
   }
 
   @override
