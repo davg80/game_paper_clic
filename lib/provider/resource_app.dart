@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:game_paper_clic/models/receipe.dart';
+import 'package:flutter/services.dart';
 
 class ResourceApp extends ChangeNotifier {
   Color woodColor = const Color.fromRGBO(150, 121, 105, 1);
@@ -10,9 +11,6 @@ class ResourceApp extends ChangeNotifier {
   int ironOre = 0;
   int copperOre = 0;
   int coal = 0;
-  List<Receipe> receipes = [
-    Receipe(id: 1, name: 'Hache', description: "Un outil utile", cost: 0),
-  ];
 
   void incrementWood() {
     wood++;
@@ -36,5 +34,12 @@ class ResourceApp extends ChangeNotifier {
 
   int getTotal() {
     return wood + ironOre + copperOre + coal;
+  }
+
+  // Receipes
+  Future loadData() async {
+    final jsonString = await rootBundle.loadString('assets/data.json');
+    final decodedJson = json.decode(jsonString);
+    return decodedJson;
   }
 }

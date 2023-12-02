@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_paper_clic/provider/resource_app.dart';
-import 'package:game_paper_clic/receipe_page.dart';
+import 'package:game_paper_clic/pages/receipe_page.dart';
 import 'package:provider/provider.dart';
 
 class ResourcePage extends StatefulWidget {

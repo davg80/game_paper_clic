@@ -1,0 +1,96 @@
+[
+  {
+    "name": "Axe",
+    "id": 1,
+    "resources": {
+      "Wood": 2,
+      "Metal rod": 2
+    },
+    "type": "tools",
+    "description": "Un outil utile.",
+    "completed": false
+  },
+  {
+    "name": "Pickaxe",
+    "id": 2,
+    "resources": {
+      "Wood": 2,
+      "Metal rod": 3
+    },
+    "type": "tools",
+    "description": "Un outil utile.",
+    "completed": false
+  },
+  {
+    "name": "Iron ingot",
+    "id": 3,
+    "resources": {
+      "Iron-ore": 1
+    },
+    "type": "Material",
+    "description": "Un lingot de fer pur.",
+    "completed": false
+  },
+  {
+    "name": "Iron plate",
+    "id": 4,
+    "resources": {
+      "Iron-ore": 3
+    },
+    "type": "Material",
+    "description": "Une plaque de fer pour la construction.",
+    "completed": false
+  },
+  {
+    "name": "Copper ingot",
+    "id": 5,
+    "resources": {
+      "Copper-ore": 1
+    },
+    "type": "Material",
+    "description": "Une lingot de cuivre pur.",
+    "completed": false
+  },
+  {
+    "name": "Metal rod",
+    "id": 6,
+    "resources": {
+      "Iron ingot": 1
+    },
+    "type": "Débloque",
+    "description": "Une tige de métal.",
+    "completed": false
+  },
+  {
+    "name": "Electric wire",
+    "id": 7,
+    "resources": {
+      "Copper ingot": 1
+    },
+    "type": "Débloque",
+    "description": "Un fil électrique pour fabriquer des composants électriques.",
+    "completed": false
+  },
+  {
+    "name": "Minor",
+    "id": 8,
+    "resources": {
+      "Iron plate": 10,
+      "Electric wire": 5
+    },
+    "type": "Permet d'extraire automatiquement du minerai de fer ou cuivre.",
+    "description": "Un bâtiment qui permet d'automatiser le minage.",
+    "completed": false
+  },
+  {
+    "name": "Foundry",
+    "id": 9,
+    "resources": {
+      "Electric wire": 5,
+      "Metal plate": 8
+    },
+    "type": "Permet de transformer automatiquement du minerai de fer ou cuivre en lingot de fer ou cuivre",
+    "description": "Un bâtiment qui permet d'automatiser la production.",
+    "completed": false
+  }
+]

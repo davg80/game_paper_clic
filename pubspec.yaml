@@ -26,4 +26,5 @@ flutter:
     - assets/images/money.png
     - assets/images/miner.png
     - assets/images/money.gif
+    - assets/data.json
 
