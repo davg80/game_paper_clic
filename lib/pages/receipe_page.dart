@@ -14,6 +14,11 @@ class ReceipePage extends StatefulWidget {
 
 class _ReceipePageState extends State<ReceipePage> {
   List<Receipe> receipes = [];
+  void _addInInventoryList(Receipe receipe) {
+    var listInventoryState = Provider.of<ResourceApp>(context, listen: false);
+    listInventoryState.setInventory(receipe);
+  }
+
   @override
   Widget build(BuildContext context) {
     receipes = Provider.of<ResourceApp>(context).receipeList;
@@ -62,7 +67,7 @@ class _ReceipePageState extends State<ReceipePage> {
                               : 'En attente...',
                           child: ElevatedButton(
                             onPressed: () {
-                              print(receipes[index].resources);
+                              _addInInventoryList(receipes[index]);
                             },
                             child: receipes[index].completed
                                 ? const Icon(

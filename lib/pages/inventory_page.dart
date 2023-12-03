@@ -3,6 +3,8 @@ import 'package:game_paper_clic/pages/receipe_page.dart';
 import 'package:game_paper_clic/provider/resource_app.dart';
 import 'package:provider/provider.dart';
 
+import '../models/receipe.dart';
+
 class InventoryPage extends StatefulWidget {
   const InventoryPage({super.key});
 
@@ -18,40 +20,48 @@ class _InventoryPageState extends State<InventoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Receipe> inventoryList = Provider.of<ResourceApp>(context).inventory;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Inventaire'),
-          leading: IconButton(
-            icon: const Icon(Icons.inventory_2_outlined),
-            onPressed: () {
-              _navigate();
-            },
-          ),
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      appBar: AppBar(
+        title: const Text('Inventaire'),
+        leading: IconButton(
+          icon: const Icon(Icons.inventory_2_outlined),
+          onPressed: () {
+            _navigate();
+          },
         ),
-        body: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Column(children: [
-            Provider.of<ResourceApp>(context).inventory.isEmpty
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Aucun inventaire',
-                      style: TextStyle(
-                          color: Colors.grey[800],
-                          fontWeight: FontWeight.w900,
-                          fontStyle: FontStyle.italic,
-                          fontFamily: 'Open Sans',
-                          fontSize: 40),
-                    ),
-                  )
-                : GridView.count(
-                    crossAxisCount:
-                        Provider.of<ResourceApp>(context).inventory.length,
-                    children: const [Text('Test')],
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: inventoryList.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: Text(inventoryList[index].name),
+                        subtitle: Text(
+                          inventoryList[index].description,
+                        ),
+                        leading: Image.asset(
+                          inventoryList[index].picture,
+                          width: 100,
+                          height: 100,
+                        ),
+                      ),
+                    ],
                   ),
-          ]),
-        ));
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

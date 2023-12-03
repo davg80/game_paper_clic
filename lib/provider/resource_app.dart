@@ -92,4 +92,10 @@ class ResourceApp extends ChangeNotifier {
     }
     // print(receipeList);
   }
+
+  void setInventory(Receipe receipe) {
+    inventory.add(receipe);
+    print(inventory);
+    notifyListeners();
+  }
 }
