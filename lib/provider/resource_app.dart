@@ -52,24 +52,20 @@ class ResourceApp extends ChangeNotifier {
     return sum;
   }
 
-  checkIsActiveCoal() {
-    // Trouver le nombre de lingot de cuivre et lingot de fer dans l'inventaire
-    // ajouter le charbon à la liste des resources courantes
-    //    Resource(
-    // name: 'coal',
-    // quantity: 0,
-    // color: '#000000',
-    // picture: 'assets/images/coal.png')
-  }
-
   void createMapCount(Receipe receipe) {
     if (statReceipes.containsKey(receipe.name)) {
       statReceipes[receipe.name] = 1 + statReceipes[receipe.name]!;
     } else {
       statReceipes[receipe.name] = 1;
     }
-    print(receipe.name);
-    print(statReceipes);
+    if (statReceipes['Iron ingot'] == 1000 &&
+        statReceipes['Copper ingot'] == 1000) {
+      currentResources.add(Resource(
+          name: 'coal',
+          quantity: 0,
+          color: '#000000',
+          picture: 'assets/images/coal.png'));
+    }
   }
 
   void activateProductionWithResource(Resource resource) {
