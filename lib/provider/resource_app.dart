@@ -9,25 +9,33 @@ class ResourceApp extends ChangeNotifier {
   Color copperOreColor = const Color.fromRGBO(217, 72, 15, 1);
   Color coalColor = const Color.fromRGBO(0, 0, 0, 1);
   Resource wood = Resource(
-      name: 'wood',
-      quantity: 0,
-      color: '#967969',
-      picture: 'assets/images/wood.png');
+    name: 'wood',
+    quantity: 0,
+    color: '#967969',
+    picture: 'assets/images/wood.png',
+    enable: true,
+  );
   Resource ironOre = Resource(
-      name: 'iron-ore',
-      quantity: 0,
-      color: '#ced4da',
-      picture: 'assets/images/iron-ore.png');
+    name: 'iron-ore',
+    quantity: 0,
+    color: '#ced4da',
+    picture: 'assets/images/iron-ore.png',
+    enable: true,
+  );
   Resource copperOre = Resource(
-      name: 'copper-ore',
-      quantity: 0,
-      color: '#d9480F',
-      picture: 'assets/images/copper-ore.png');
+    name: 'copper-ore',
+    quantity: 0,
+    color: '#d9480F',
+    picture: 'assets/images/copper-ore.png',
+    enable: true,
+  );
   Resource coal = Resource(
-      name: 'coal',
-      quantity: 0,
-      color: '#000000',
-      picture: 'assets/images/coal.png');
+    name: 'coal',
+    quantity: 0,
+    color: '#000000',
+    picture: 'assets/images/coal.png',
+    enable: false,
+  );
 
   List<Receipe> inventory = [];
   List<Receipe> receipeList = [];
@@ -115,10 +123,10 @@ class ResourceApp extends ChangeNotifier {
           resources[0].name == regularResources[0].name) {
         if (regularResources[0].quantity == 1) {
           findReceipe(receipeId).completed = false;
-          findResource(resources[0].name).quantity--;
         }
       }
     });
+    findResource(receipe.resources[0].name).quantity--;
     // print(inventory);
     notifyListeners();
   }

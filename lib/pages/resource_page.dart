@@ -47,48 +47,50 @@ class _ResourceState extends State<ResourcePage> {
         child: Column(
           children: [
             Expanded(
-                child: GridView.builder(
-              itemCount:
-                  Provider.of<ResourceApp>(context).currentResources.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 200,
-                  height: 200,
-                  color: Color(int.parse(
-                          resources[index].color!.substring(1, 7),
-                          radix: 16) +
-                      0xff000000),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: Column(children: [
-                          Image.asset(
-                            resources[index].picture!,
-                            width: 100,
-                            height: 100,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(
-                                MediaQuery.of(context).size.width / 400),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                _incrementCounter(index);
-                              },
-                              child: Text(resources[index].quantity.toString()),
+              child: GridView.builder(
+                itemCount:
+                    Provider.of<ResourceApp>(context).currentResources.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 200,
+                    height: 200,
+                    color: Color(int.parse(
+                            resources[index].color!.substring(1, 7),
+                            radix: 16) +
+                        0xff000000),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Column(children: [
+                            Image.asset(
+                              resources[index].picture!,
+                              width: 100,
+                              height: 100,
                             ),
-                          )
-                        ]),
-                      )
-                    ],
-                  ),
-                );
-              },
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2,
+                            Padding(
+                              padding: EdgeInsets.all(
+                                  MediaQuery.of(context).size.width / 400),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  _incrementCounter(index);
+                                },
+                                child:
+                                    Text(resources[index].quantity.toString()),
+                              ),
+                            )
+                          ]),
+                        )
+                      ],
+                    ),
+                  );
+                },
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 2,
+                ),
               ),
-            )),
+            ),
             containerTotalResource(context)
           ],
         ),

@@ -57,21 +57,28 @@ class Resource {
   int quantity;
   String? color;
   String? picture;
+  bool? enable;
+
   Resource(
-      {required this.name, required this.quantity, this.color, this.picture});
+      {required this.name,
+      required this.quantity,
+      this.color,
+      this.picture,
+      this.enable});
 
   factory Resource.fromJson(Map<String, dynamic> json) => Resource(
         name: json["name"],
         quantity: json["quantity"],
         color: json["color"],
         picture: json["picture"],
+        enable: json["enable"],
       );
 
   Map<String, dynamic> toJson() => {"name": name, "quantity": quantity};
   @override
   String toString() {
     if (color != null && picture != null) {
-      return '{name: $name, quantity: $quantity, color: $color, picture: $picture}';
+      return '{name: $name, quantity: $quantity, color: $color, picture: $picture, enable: $enable}';
     }
     return '{name: $name, quantity: $quantity}';
   }
