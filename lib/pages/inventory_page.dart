@@ -49,7 +49,7 @@ class _InventoryPageState extends State<InventoryPage> {
                 : GridView.count(
                     crossAxisCount:
                         Provider.of<ResourceApp>(context).inventory.length,
-                    children: [],
+                    children: const [Text('Test')],
                   ),
           ]),
         ));

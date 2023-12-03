@@ -4,8 +4,8 @@
     "id": 1,
     "picture": "assets/images/receipes/axe.png", 
     "resources": [
-      {"name": "Wood", "quantity":2},
-      {"name": "Metal rod", "quantity":2}
+      {"name": "wood", "quantity":2},
+      {"name": "metal rod", "quantity":2}
     ],
     "type": "tools",
     "description": "Un outil utile.",
@@ -16,8 +16,8 @@
     "id": 2,
     "picture": "assets/images/receipes/pickaxe.png",
     "resources": [
-      {"name": "Wood", "quantity":2},
-      {"name": "Metal rod", "quantity":3}
+      {"name": "wood", "quantity":2},
+      {"name": "metal rod", "quantity":3}
     ],
     "type": "tools",
     "description": "Un outil utile.",
@@ -28,7 +28,7 @@
     "id": 3,
     "picture": "assets/images/receipes/iron-ingot.png",
     "resources": [
-      {"name": "Iron-ore", "quantity":1}
+      {"name": "iron-ore", "quantity":1}
     ],
     "type": "Material",
     "description": "Un lingot de fer pur.",
@@ -39,7 +39,7 @@
     "id": 4,
     "picture": "assets/images/receipes/iron-plate.png",
     "resources": [
-      {"name": "Iron-ore", "quantity":3}
+      {"name": "iron-ore", "quantity":3}
     ],
     "type": "Material",
     "description": "Une plaque de fer pour la construction.",
@@ -50,7 +50,7 @@
     "id": 5,
     "picture": "assets/images/receipes/copper-ingot.png",
     "resources": [
-      {"name": "Copper-ore", "quantity":1}
+      {"name": "copper-ore", "quantity":1}
     ],
     "type": "Material",
     "description": "Une lingot de cuivre pur.",
@@ -61,7 +61,7 @@
     "id": 6,
     "picture": "assets/images/receipes/metal-rod.png",
     "resources": [
-      {"name": "Iron ingot", "quantity":1}
+      {"name": "iron ingot", "quantity":1}
     ],
     "type": "Débloque",
     "description": "Une tige de métal.",
@@ -72,7 +72,7 @@
     "id": 7,
     "picture": "assets/images/receipes/electric-wire.png",
     "resources": [
-      {"name": "Copper ingot", "quantity":1}
+      {"name": "copper ingot", "quantity":1}
     ],
     "type": "Débloque",
     "description": "Un fil électrique pour fabriquer des composants électriques.",
@@ -83,8 +83,8 @@
     "id": 8,
     "picture": "assets/images/receipes/mine.png",
     "resources": [
-      {"name": "Iron plate", "quantity":10},
-      {"name": "Electric wire","quantity": 5}
+      {"name": "iron plate", "quantity":10},
+      {"name": "electric wire","quantity": 5}
     ],
     "type": "Permet d'extraire automatiquement du minerai de fer ou cuivre.",
     "description": "Un bâtiment qui permet d'automatiser le minage.",
@@ -95,8 +95,8 @@
     "id": 9,
     "picture": "assets/images/receipes/foundry.png",
     "resources": [
-      {"name": "Electric wire", "quantity":5},
-      {"name": "Metal plate", "quantity": 8}
+      {"name": "electric wire", "quantity":5},
+      {"name": "metal plate", "quantity": 8}
     ],
     "type": "Permet de transformer automatiquement du minerai de fer ou cuivre en lingot de fer ou cuivre",
     "description": "Un bâtiment qui permet d'automatiser la production.",

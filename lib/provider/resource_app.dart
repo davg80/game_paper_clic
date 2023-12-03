@@ -14,25 +14,32 @@ class ResourceApp extends ChangeNotifier {
   Resource coal = Resource(name: 'coal', quantity: 0);
 
   List<Receipe> inventory = [];
-  List<Receipe> receipes = [];
+  List<Receipe> receipeList = [];
+  List<Resource> resourceActual = [];
+  Map<int, dynamic> resourceinventoryNecessary = {};
 
   void incrementWood() {
     wood.quantity++;
+    activateProductionResource(wood);
+    // print(receipeList);
     notifyListeners();
   }
 
   void incrementIronOre() {
     ironOre.quantity++;
+    activateProductionResource(ironOre);
     notifyListeners();
   }
 
   void incrementCopperOre() {
     copperOre.quantity++;
+    activateProductionResource(copperOre);
     notifyListeners();
   }
 
   void incrementCoal() {
     coal.quantity++;
+    activateProductionResource(coal);
     notifyListeners();
   }
 
@@ -43,14 +50,46 @@ class ResourceApp extends ChangeNotifier {
         coal.quantity;
   }
 
+  void activateProductionResource(Resource resource) {
+    resourceinventoryNecessary.forEach((receipeId, resources) {
+      if (resources.length == 1 && resources[0].name == resource.name) {
+        // print(
+        //     'compare quantity  : ${ironOre.quantity >= resources[0].quantity}');
+        // print('ironOre quantity  : ${ironOre.quantity}');
+        // print('resource quantity  : ${resources[0].quantity}');
+        // print('key: $receipeId, value: $resources');
+        if (resource.quantity >= resources[0].quantity) {
+          findReceipe(receipeId).completed = true;
+        }
+      }
+    });
+  }
+
+  Receipe findReceipe(int id) =>
+      receipeList.firstWhere((receipe) => receipe.id == id);
+
   // Receipes
-  Future loadData() async {
+  Future _loadData() async {
     final jsonString = await rootBundle.loadString('assets/data.json');
-    final listOfJsonElements = json.decode(jsonString) as List;
-    return listOfJsonElements.map((jsonElement) {
-      Receipe receipe = Receipe.fromJson(jsonElement);
-      receipes.add(receipe);
-      return Receipe.fromJson(jsonElement);
-    }).toList();
+    final listOfJsonElements = json.decode(jsonString) as List<dynamic>;
+    return listOfJsonElements
+        .map((element) => Receipe.fromJson(element))
+        .toList();
+  }
+
+  setReceipeList() async {
+    if (receipeList.isEmpty) {
+      receipeList = await _loadData();
+      if (receipeList.isNotEmpty) {
+        for (var receipe in receipeList) {
+          resourceinventoryNecessary[receipe.id] = receipe.resources;
+        }
+        resourceActual.add(wood);
+        resourceActual.add(ironOre);
+        resourceActual.add(copperOre);
+        resourceActual.add(coal);
+      }
+    }
+    // print(receipeList);
   }
 }

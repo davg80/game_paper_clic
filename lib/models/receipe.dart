@@ -45,6 +45,11 @@ class Receipe {
         "description": description,
         "completed": completed,
       };
+
+  @override
+  String toString() {
+    return '{name: $name,id: $id,picture: $picture,resources: $resources,type: $type,description: $description,completed: $completed}';
+  }
 }
 
 class Resource {
@@ -65,4 +70,8 @@ class Resource {
         "name": name,
         "quantity": quantity,
       };
+  @override
+  String toString() {
+    return '{name: $name, quantity: $quantity}';
+  }
 }

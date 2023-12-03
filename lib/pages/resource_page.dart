@@ -42,6 +42,7 @@ class _ResourceState extends State<ResourcePage> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<ResourceApp>(context).setReceipeList();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
