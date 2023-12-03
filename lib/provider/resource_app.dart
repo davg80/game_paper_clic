@@ -8,60 +8,34 @@ class ResourceApp extends ChangeNotifier {
   Color ironOreColor = const Color.fromRGBO(206, 212, 218, 1);
   Color copperOreColor = const Color.fromRGBO(217, 72, 15, 1);
   Color coalColor = const Color.fromRGBO(0, 0, 0, 1);
-  Resource wood = Resource(
-    name: 'wood',
-    quantity: 0,
-    color: '#967969',
-    picture: 'assets/images/wood.png',
-    enable: true,
-  );
-  Resource ironOre = Resource(
-    name: 'iron-ore',
-    quantity: 0,
-    color: '#ced4da',
-    picture: 'assets/images/iron-ore.png',
-    enable: true,
-  );
-  Resource copperOre = Resource(
-    name: 'copper-ore',
-    quantity: 0,
-    color: '#d9480F',
-    picture: 'assets/images/copper-ore.png',
-    enable: true,
-  );
-  Resource coal = Resource(
-    name: 'coal',
-    quantity: 0,
-    color: '#000000',
-    picture: 'assets/images/coal.png',
-    enable: false,
-  );
 
   List<Receipe> inventory = [];
   List<Receipe> receipeList = [];
   List<Resource> currentResources = [
     Resource(
-        name: 'wood',
-        quantity: 0,
-        color: '#967969',
-        picture: 'assets/images/wood.png'),
+      name: 'wood',
+      quantity: 0,
+      color: '#967969',
+      picture: 'assets/images/wood.png',
+      enable: true,
+    ),
     Resource(
-        name: 'iron-ore',
-        quantity: 0,
-        color: '#ced4da',
-        picture: 'assets/images/iron-ore.png'),
+      name: 'iron-ore',
+      quantity: 0,
+      color: '#ced4da',
+      picture: 'assets/images/iron-ore.png',
+      enable: true,
+    ),
     Resource(
-        name: 'copper-ore',
-        quantity: 0,
-        color: '#d9480F',
-        picture: 'assets/images/copper-ore.png'),
-    Resource(
-        name: 'coal',
-        quantity: 0,
-        color: '#000000',
-        picture: 'assets/images/coal.png')
+      name: 'copper-ore',
+      quantity: 0,
+      color: '#d9480F',
+      picture: 'assets/images/copper-ore.png',
+      enable: true,
+    )
   ];
   Map<int, dynamic> resourceinventoryNecessary = {};
+  Map<String, int> statReceipes = {};
 
   void increment(int index) {
     currentResources[index].quantity++;
@@ -76,6 +50,26 @@ class ResourceApp extends ChangeNotifier {
       sum += resource.quantity;
     }
     return sum;
+  }
+
+  checkIsActiveCoal() {
+    // Trouver le nombre de lingot de cuivre et lingot de fer dans l'inventaire
+    // ajouter le charbon à la liste des resources courantes
+    //    Resource(
+    // name: 'coal',
+    // quantity: 0,
+    // color: '#000000',
+    // picture: 'assets/images/coal.png')
+  }
+
+  void createMapCount(Receipe receipe) {
+    if (statReceipes.containsKey(receipe.name)) {
+      statReceipes[receipe.name] = 1 + statReceipes[receipe.name]!;
+    } else {
+      statReceipes[receipe.name] = 1;
+    }
+    print(receipe.name);
+    print(statReceipes);
   }
 
   void activateProductionWithResource(Resource resource) {
@@ -112,22 +106,26 @@ class ResourceApp extends ChangeNotifier {
         }
       }
     }
-    // print(receipeList);
   }
 
-  void setInventory(Receipe receipe) {
+  void setInventory(Receipe receipe, List<Resource> resources) {
     inventory.add(receipe);
-    var regularResources = receipe.resources;
-    resourceinventoryNecessary.forEach((receipeId, resources) {
-      if (resources.length == 1 &&
-          resources[0].name == regularResources[0].name) {
-        if (regularResources[0].quantity == 1) {
-          findReceipe(receipeId).completed = false;
-        }
-      }
-    });
-    findResource(receipe.resources[0].name).quantity--;
-    // print(inventory);
+    createMapCount(receipe);
+    // print(resources);
+
+    var resource = findResource(resources[0].name);
+    if (resource.quantity > resources[0].quantity &&
+        (resource.quantity - receipe.resources[0].quantity) > 0) {
+      resource.quantity -= receipe.resources[0].quantity;
+    } else {
+      findReceipe(receipe.id).completed = false;
+    }
     notifyListeners();
   }
+
+  // Resource(
+  //   name: 'coal',
+  //   quantity: 0,
+  //   color: '#000000',
+  //   picture: 'assets/images/coal.png')
 }

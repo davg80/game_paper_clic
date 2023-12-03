@@ -14,9 +14,9 @@ class ReceipePage extends StatefulWidget {
 
 class _ReceipePageState extends State<ReceipePage> {
   List<Receipe> receipes = [];
-  void _addInInventoryList(Receipe receipe) {
+  void _addInInventoryList(Receipe receipe, List<Resource> resources) {
     var listInventoryState = Provider.of<ResourceApp>(context, listen: false);
-    listInventoryState.setInventory(receipe);
+    listInventoryState.setInventory(receipe, resources);
   }
 
   @override
@@ -85,7 +85,8 @@ class _ReceipePageState extends State<ReceipePage> {
                               : 'En attente...',
                           child: ElevatedButton(
                             onPressed: () {
-                              _addInInventoryList(receipes[index]);
+                              _addInInventoryList(
+                                  receipes[index], receipes[index].resources);
                             },
                             child: receipes[index].completed
                                 ? const Icon(
