@@ -20,26 +20,26 @@ class ResourceApp extends ChangeNotifier {
 
   void incrementWood() {
     wood.quantity++;
-    activateProductionResource(wood);
+    activateProductionWithResource(wood);
     // print(receipeList);
     notifyListeners();
   }
 
   void incrementIronOre() {
     ironOre.quantity++;
-    activateProductionResource(ironOre);
+    activateProductionWithResource(ironOre);
     notifyListeners();
   }
 
   void incrementCopperOre() {
     copperOre.quantity++;
-    activateProductionResource(copperOre);
+    activateProductionWithResource(copperOre);
     notifyListeners();
   }
 
   void incrementCoal() {
     coal.quantity++;
-    activateProductionResource(coal);
+    activateProductionWithResource(coal);
     notifyListeners();
   }
 
@@ -50,7 +50,7 @@ class ResourceApp extends ChangeNotifier {
         coal.quantity;
   }
 
-  void activateProductionResource(Resource resource) {
+  void activateProductionWithResource(Resource resource) {
     resourceinventoryNecessary.forEach((receipeId, resources) {
       if (resources.length == 1 && resources[0].name == resource.name) {
         // print(
