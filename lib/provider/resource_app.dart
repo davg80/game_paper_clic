@@ -8,56 +8,71 @@ class ResourceApp extends ChangeNotifier {
   Color ironOreColor = const Color.fromRGBO(206, 212, 218, 1);
   Color copperOreColor = const Color.fromRGBO(217, 72, 15, 1);
   Color coalColor = const Color.fromRGBO(0, 0, 0, 1);
-  Resource wood = Resource(name: 'wood', quantity: 0);
-  Resource ironOre = Resource(name: 'iron-ore', quantity: 0);
-  Resource copperOre = Resource(name: 'copper-ore', quantity: 0);
-  Resource coal = Resource(name: 'coal', quantity: 0);
+  Resource wood = Resource(
+      name: 'wood',
+      quantity: 0,
+      color: '#967969',
+      picture: 'assets/images/wood.png');
+  Resource ironOre = Resource(
+      name: 'iron-ore',
+      quantity: 0,
+      color: '#ced4da',
+      picture: 'assets/images/iron-ore.png');
+  Resource copperOre = Resource(
+      name: 'copper-ore',
+      quantity: 0,
+      color: '#d9480F',
+      picture: 'assets/images/copper-ore.png');
+  Resource coal = Resource(
+      name: 'coal',
+      quantity: 0,
+      color: '#000000',
+      picture: 'assets/images/coal.png');
 
   List<Receipe> inventory = [];
   List<Receipe> receipeList = [];
-  List<Resource> resourceActual = [];
+  List<Resource> currentResources = [
+    Resource(
+        name: 'wood',
+        quantity: 0,
+        color: '#967969',
+        picture: 'assets/images/wood.png'),
+    Resource(
+        name: 'iron-ore',
+        quantity: 0,
+        color: '#ced4da',
+        picture: 'assets/images/iron-ore.png'),
+    Resource(
+        name: 'copper-ore',
+        quantity: 0,
+        color: '#d9480F',
+        picture: 'assets/images/copper-ore.png'),
+    Resource(
+        name: 'coal',
+        quantity: 0,
+        color: '#000000',
+        picture: 'assets/images/coal.png')
+  ];
   Map<int, dynamic> resourceinventoryNecessary = {};
 
-  void incrementWood() {
-    wood.quantity++;
-    activateProductionWithResource(wood);
+  void increment(int index) {
+    currentResources[index].quantity++;
+    activateProductionWithResource(currentResources[index]);
     // print(receipeList);
     notifyListeners();
   }
 
-  void incrementIronOre() {
-    ironOre.quantity++;
-    activateProductionWithResource(ironOre);
-    notifyListeners();
-  }
-
-  void incrementCopperOre() {
-    copperOre.quantity++;
-    activateProductionWithResource(copperOre);
-    notifyListeners();
-  }
-
-  void incrementCoal() {
-    coal.quantity++;
-    activateProductionWithResource(coal);
-    notifyListeners();
-  }
-
   int getTotal() {
-    return wood.quantity +
-        ironOre.quantity +
-        copperOre.quantity +
-        coal.quantity;
+    int sum = 0;
+    for (var resource in currentResources) {
+      sum += resource.quantity;
+    }
+    return sum;
   }
 
   void activateProductionWithResource(Resource resource) {
     resourceinventoryNecessary.forEach((receipeId, resources) {
       if (resources.length == 1 && resources[0].name == resource.name) {
-        // print(
-        //     'compare quantity  : ${ironOre.quantity >= resources[0].quantity}');
-        // print('ironOre quantity  : ${ironOre.quantity}');
-        // print('resource quantity  : ${resources[0].quantity}');
-        // print('key: $receipeId, value: $resources');
         if (resource.quantity >= resources[0].quantity) {
           findReceipe(receipeId).completed = true;
         }
@@ -67,6 +82,9 @@ class ResourceApp extends ChangeNotifier {
 
   Receipe findReceipe(int id) =>
       receipeList.firstWhere((receipe) => receipe.id == id);
+
+  Resource findResource(String searchName) =>
+      currentResources.firstWhere((resource) => resource.name == searchName);
 
   // Receipes
   Future _loadData() async {
@@ -84,10 +102,6 @@ class ResourceApp extends ChangeNotifier {
         for (var receipe in receipeList) {
           resourceinventoryNecessary[receipe.id] = receipe.resources;
         }
-        resourceActual.add(wood);
-        resourceActual.add(ironOre);
-        resourceActual.add(copperOre);
-        resourceActual.add(coal);
       }
     }
     // print(receipeList);
@@ -95,7 +109,17 @@ class ResourceApp extends ChangeNotifier {
 
   void setInventory(Receipe receipe) {
     inventory.add(receipe);
-    print(inventory);
+    var regularResources = receipe.resources;
+    resourceinventoryNecessary.forEach((receipeId, resources) {
+      if (resources.length == 1 &&
+          resources[0].name == regularResources[0].name) {
+        if (regularResources[0].quantity == 1) {
+          findReceipe(receipeId).completed = false;
+          findResource(resources[0].name).quantity--;
+        }
+      }
+    });
+    // print(inventory);
     notifyListeners();
   }
 }

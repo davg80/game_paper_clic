@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_paper_clic/models/receipe.dart';
 import 'package:game_paper_clic/provider/resource_app.dart';
 import 'package:game_paper_clic/pages/receipe_page.dart';
 import 'package:provider/provider.dart';
@@ -11,24 +12,9 @@ class ResourcePage extends StatefulWidget {
 }
 
 class _ResourceState extends State<ResourcePage> {
-  void _incrementCounterWood() {
+  void _incrementCounter(index) {
     var appStateWood = Provider.of<ResourceApp>(context, listen: false);
-    appStateWood.incrementWood();
-  }
-
-  void _incrementCounterIronOre() {
-    var appStateIronOre = Provider.of<ResourceApp>(context, listen: false);
-    appStateIronOre.incrementIronOre();
-  }
-
-  void _incrementCounterCopperOre() {
-    var appStateCopperOre = Provider.of<ResourceApp>(context, listen: false);
-    appStateCopperOre.incrementCopperOre();
-  }
-
-  void _incrementCounterCoal() {
-    var appStateCoal = Provider.of<ResourceApp>(context, listen: false);
-    appStateCoal.incrementCoal();
+    appStateWood.increment(index);
   }
 
   void _navigate() {
@@ -43,6 +29,9 @@ class _ResourceState extends State<ResourcePage> {
   @override
   Widget build(BuildContext context) {
     Provider.of<ResourceApp>(context).setReceipeList();
+    List<Resource> resources =
+        Provider.of<ResourceApp>(context).currentResources;
+    // print('RESOURCES $resources');
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -58,175 +47,51 @@ class _ResourceState extends State<ResourcePage> {
         child: Column(
           children: [
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 4,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.all(MediaQuery.of(context).size.width / 400),
-                    child: containerWood(context),
+                child: GridView.builder(
+              itemCount:
+                  Provider.of<ResourceApp>(context).currentResources.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: 200,
+                  height: 200,
+                  color: Color(int.parse(
+                          resources[index].color!.substring(1, 7),
+                          radix: 16) +
+                      0xff000000),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Column(children: [
+                          Image.asset(
+                            resources[index].picture!,
+                            width: 100,
+                            height: 100,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(
+                                MediaQuery.of(context).size.width / 400),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                _incrementCounter(index);
+                              },
+                              child: Text(resources[index].quantity.toString()),
+                            ),
+                          )
+                        ]),
+                      )
+                    ],
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsets.all(MediaQuery.of(context).size.width / 400),
-                    child: containerIronOre(context),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.all(MediaQuery.of(context).size.width / 400),
-                    child: containerCopperOre(context),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.all(MediaQuery.of(context).size.width / 400),
-                    child: containerCoal(context),
-                  ),
-                ],
+                );
+              },
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2,
               ),
-            ),
+            )),
             containerTotalResource(context)
           ],
         ),
-      ),
-    );
-  }
-
-  Container containerCoal(BuildContext context) {
-    return Container(
-      width: 200,
-      height: 200,
-      color: Provider.of<ResourceApp>(context).coalColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Column(children: [
-              Image.asset(
-                'assets/images/coal.png',
-                width: 100,
-                height: 100,
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.all(MediaQuery.of(context).size.width / 400),
-                child: ElevatedButton(
-                  onPressed: () {
-                    _incrementCounterCoal();
-                  },
-                  child: Text(Provider.of<ResourceApp>(context)
-                      .coal
-                      .quantity
-                      .toString()),
-                ),
-              )
-            ]),
-          )
-        ],
-      ),
-    );
-  }
-
-  Container containerCopperOre(BuildContext context) {
-    return Container(
-      width: 200,
-      height: 200,
-      color: Provider.of<ResourceApp>(context).copperOreColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Column(children: [
-              Image.asset(
-                'assets/images/copper-ore.png',
-                width: 100,
-                height: 100,
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.all(MediaQuery.of(context).size.height / 400),
-                child: ElevatedButton(
-                  onPressed: () {
-                    _incrementCounterCopperOre();
-                  },
-                  child: Text(Provider.of<ResourceApp>(context)
-                      .copperOre
-                      .quantity
-                      .toString()),
-                ),
-              )
-            ]),
-          )
-        ],
-      ),
-    );
-  }
-
-  Container containerIronOre(BuildContext context) {
-    return Container(
-      width: 200,
-      height: 200,
-      color: Provider.of<ResourceApp>(context).ironOreColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Column(children: [
-              Image.asset(
-                'assets/images/iron-ore.png',
-                width: 100,
-                height: 100,
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.all(MediaQuery.of(context).size.height / 400),
-                child: ElevatedButton(
-                  onPressed: () {
-                    _incrementCounterIronOre();
-                  },
-                  child: Text(Provider.of<ResourceApp>(context)
-                      .ironOre
-                      .quantity
-                      .toString()),
-                ),
-              )
-            ]),
-          )
-        ],
-      ),
-    );
-  }
-
-  Container containerWood(BuildContext context) {
-    return Container(
-      width: 200,
-      height: 200,
-      color: Provider.of<ResourceApp>(context).woodColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Column(children: [
-              Image.asset(
-                'assets/images/wood.png',
-                width: 100,
-                height: 100,
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.all(MediaQuery.of(context).size.height / 400),
-                child: ElevatedButton(
-                  onPressed: () {
-                    _incrementCounterWood();
-                  },
-                  child: Text(Provider.of<ResourceApp>(context)
-                      .wood
-                      .quantity
-                      .toString()),
-                ),
-              )
-            ]),
-          )
-        ],
       ),
     );
   }

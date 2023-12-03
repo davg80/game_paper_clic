@@ -55,23 +55,24 @@ class Receipe {
 class Resource {
   String name;
   int quantity;
-
-  Resource({
-    required this.name,
-    required this.quantity,
-  });
+  String? color;
+  String? picture;
+  Resource(
+      {required this.name, required this.quantity, this.color, this.picture});
 
   factory Resource.fromJson(Map<String, dynamic> json) => Resource(
         name: json["name"],
         quantity: json["quantity"],
+        color: json["color"],
+        picture: json["picture"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "quantity": quantity,
-      };
+  Map<String, dynamic> toJson() => {"name": name, "quantity": quantity};
   @override
   String toString() {
+    if (color != null && picture != null) {
+      return '{name: $name, quantity: $quantity, color: $color, picture: $picture}';
+    }
     return '{name: $name, quantity: $quantity}';
   }
 }
