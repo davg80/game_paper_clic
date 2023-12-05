@@ -13,9 +13,19 @@ class InventoryPage extends StatefulWidget {
 }
 
 class _InventoryPageState extends State<InventoryPage> {
-  void _triePartype() {
+  void _sortByType() {
     var listInventoryState = Provider.of<ResourceApp>(context, listen: false);
     listInventoryState.sortByTypeReceipe();
+  }
+
+  void _sortByName() {
+    var listInventoryState = Provider.of<ResourceApp>(context, listen: false);
+    listInventoryState.sortByNameReceipe();
+  }
+
+  void _sortByQuantity() {
+    var listInventoryState = Provider.of<ResourceApp>(context, listen: false);
+    listInventoryState.sortByQuantityReceipe();
   }
 
   void _navigate() {
@@ -26,6 +36,7 @@ class _InventoryPageState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     List<Receipe> inventoryList = Provider.of<ResourceApp>(context).inventory;
+    Map totalInventory = Provider.of<ResourceApp>(context).totalInventory;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inventaire'),
@@ -41,14 +52,21 @@ class _InventoryPageState extends State<InventoryPage> {
         child: Column(
           children: [
             Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: inventoryList.isEmpty
-                    ? const Text(
-                        'Aucun inventaire',
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.w700),
-                      )
-                    : null),
+              padding: const EdgeInsets.all(8.0),
+              child: inventoryList.isEmpty
+                  ? const Text(
+                      'Aucun inventaire',
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.w700),
+                    )
+                  : null,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                totalInventory.toString(),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -56,16 +74,27 @@ class _InventoryPageState extends State<InventoryPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      _triePartype();
+                      _sortByType();
                     },
-                    child: const Text('Trier par catégorie'),
+                    child: const Text('Catégorie'),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Trier par quantité'),
+                    onPressed: () {
+                      _sortByName();
+                    },
+                    child: const Text('Name'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _sortByQuantity();
+                    },
+                    child: const Text('Quantité'),
                   ),
                 ),
               ],

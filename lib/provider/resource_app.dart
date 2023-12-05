@@ -36,6 +36,7 @@ class ResourceApp extends ChangeNotifier {
   ];
   Map<int, dynamic> resourceinventoryNecessary = {};
   Map<String, int> statReceipes = {};
+  var totalInventory = {};
 
   void increment(int index) {
     currentResources[index].quantity++;
@@ -123,8 +124,24 @@ class ResourceApp extends ChangeNotifier {
   }
 
   void sortByTypeReceipe() {
-    print(inventory);
     inventory.sort((a, b) => a.type.compareTo(b.type));
+    notifyListeners();
+  }
+
+  void sortByNameReceipe() {
+    inventory.sort((a, b) => a.name.compareTo(b.name));
+    notifyListeners();
+  }
+
+  void sortByQuantityReceipe() {
+    totalInventory = {};
+    for (var element in inventory) {
+      if (!totalInventory.containsKey(element.name)) {
+        totalInventory[element.name] = 1;
+      } else {
+        totalInventory[element.name] += 1;
+      }
+    }
     notifyListeners();
   }
 }

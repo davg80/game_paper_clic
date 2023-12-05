@@ -8,6 +8,10 @@ git clone git@github.com:davg80/game_paper_clic.git
 ``` 
 git clone https://github.com/davg80/game_paper_clic.git
 ```
+## Mise en route du projet sur Chrome
+```
+flutter pub get
+```
 
 ## _Objectifs du projet_:
 1- Clique sur chaque ressource pour récolter une unité
@@ -67,7 +71,7 @@ Pour le jeu, j'ai voulu partir d'une page blanche pour ne pas me laisser influen
 ## Difficultés
 Mes difficultés sont externes au projet dans le sens où je n'ai pas le temps identique aux autres de part mes obligations parentales, mais cette application est une bonne opportunité de challenges..
 
-- Actuellement, je suis à la question 7. Je n'ai pas fait toutes les schémas de récupération de toutes les ressources.Les possibilités me semblent tellement infini.
+- Actuellement, je suis à la question 8. Je n'ai pas fait toutes les schémas de récupération de toutes les ressources.Les possibilités me semblent tellement infini.
 
 - Une autre difficulté a été la gestion des données et la complexité qu'elle comporte pour les rendre dynamique et les utiliser via le provider.
 
@@ -125,3 +129,8 @@ Ensuite, on a la possibilité d'avoir le charbon lors des 1000 lingots de cuivre
 ```
 ![](imagesReadme/RecettesAvecCharbon.png)
 
+## Les systèmes de filtres
+
+Mise en place des systèmes de filtres pour les catégories, les noms et pour les quantités, j'ai simplement affiché le tableau explicatif des quantités de chaque recette pour le moment.
+
+![](imagesReadme/FilterSystem.png)
