@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_paper_clic/models/receipe.dart';
+import 'package:game_paper_clic/pages/dashboard_page.dart';
 import 'package:game_paper_clic/provider/resource_app.dart';
 import 'package:game_paper_clic/pages/receipe_page.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,22 @@ class _ResourceState extends State<ResourcePage> {
                 ),
               ),
             ),
-            containerTotalResource(context)
+            containerTotalResource(context),
+            Container(
+              transform: Matrix4.translationValues(0.0, -200.0, 0.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const DashboardPage(title: 'DashBoard'),
+                    ),
+                  );
+                },
+                child: const Text("Dashboard"),
+              ),
+            )
           ],
         ),
       ),

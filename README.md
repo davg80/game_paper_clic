@@ -134,3 +134,21 @@ Ensuite, on a la possibilité d'avoir le charbon lors des 1000 lingots de cuivre
 Mise en place des systèmes de filtres pour les catégories, les noms et pour les quantités, j'ai simplement affiché le tableau explicatif des quantités de chaque recette pour le moment.
 
 ![](imagesReadme/FilterSystem.png)
+
+## Les systèmes de filtres
+
+Mise en place des systèmes de filtres pour les catégories, les noms et pour les quantités, j'ai simplement affiché le tableau explicatif des quantités de chaque recette pour le moment.
+
+![](imagesReadme/FilterSystem.png)
+
+## Gameplay supplémentaire
+
+![](imagesReadme/ButtonRedirectDashboard.png)
+
+Mise en place d'une page de dashboard pour laquelle je n'ai pas pu tout mettre ce que je voulais (Temps).On peut y accèder via le bouton dans la page de recettes.
+
+![](imagesReadme/DashboardNiveau.png)
+
+Ajoute de niveau qui progresse au fur et à mesure que nous avons de plus en plus d'artefacts.
+
+![](imagesReadme/ProgressLevel.png)

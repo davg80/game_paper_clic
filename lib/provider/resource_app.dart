@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:game_paper_clic/models/receipe.dart';
@@ -37,6 +38,7 @@ class ResourceApp extends ChangeNotifier {
   Map<int, dynamic> resourceinventoryNecessary = {};
   Map<String, int> statReceipes = {};
   var totalInventory = {};
+  double pourcent = 0.0;
 
   void increment(int index) {
     currentResources[index].quantity++;
@@ -142,6 +144,18 @@ class ResourceApp extends ChangeNotifier {
         totalInventory[element.name] += 1;
       }
     }
+    notifyListeners();
+  }
+
+  void incrementLevel() {
+    for (var element in inventory) {
+      if (!totalInventory.containsKey(element.name) && pourcent < 1.0) {
+        pourcent += 0.01;
+      } else if (pourcent < 1.0) {
+        pourcent += 0.01;
+      }
+    }
+    print(pourcent);
     notifyListeners();
   }
 }
