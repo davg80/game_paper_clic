@@ -13,6 +13,11 @@ class InventoryPage extends StatefulWidget {
 }
 
 class _InventoryPageState extends State<InventoryPage> {
+  void _triePartype() {
+    var listInventoryState = Provider.of<ResourceApp>(context, listen: false);
+    listInventoryState.sortByTypeReceipe();
+  }
+
   void _navigate() {
     Navigator.pop(
         context, MaterialPageRoute(builder: (context) => const ReceipePage()));
@@ -35,32 +40,67 @@ class _InventoryPageState extends State<InventoryPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: inventoryList.length,
-              itemBuilder: (context, index) {
-                return Padding(
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: inventoryList.isEmpty
+                    ? const Text(
+                        'Aucun inventaire',
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.w700),
+                      )
+                    : null),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text(inventoryList[index].name),
-                          subtitle: Text(
-                            inventoryList[index].description,
-                          ),
-                          leading: Image.asset(
-                            inventoryList[index].picture,
-                            width: 100,
-                            height: 100,
-                          ),
-                        ),
-                      ],
-                    ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _triePartype();
+                    },
+                    child: const Text('Trier par catégorie'),
                   ),
-                );
-              },
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Trier par quantité'),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: inventoryList.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      child: Column(
+                        children: [
+                          ListTile(
+                            title: Text(inventoryList[index].name),
+                            subtitle: Text(
+                              inventoryList[index].description,
+                            ),
+                            leading: Image.asset(
+                              inventoryList[index].picture,
+                              width: 100,
+                              height: 100,
+                            ),
+                            trailing: Text(inventoryList[index].type),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),

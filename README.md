@@ -119,6 +119,9 @@ Il se rempli avec le symbole de la ressource et la description.
 
 ## Options
 Ensuite, on a la possibilité d'avoir le charbon lors des 1000 lingots de cuivre et de fer.
-
+```Dart
+ if (statReceipes['Iron ingot'] == 1000 &&
+        statReceipes['Copper ingot'] == 1000 &&
+```
 ![](imagesReadme/RecettesAvecCharbon.png)
 

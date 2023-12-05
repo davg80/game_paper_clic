@@ -58,8 +58,8 @@ class ResourceApp extends ChangeNotifier {
     } else {
       statReceipes[receipe.name] = 1;
     }
-    if (statReceipes['Iron ingot'] == 3 &&
-        statReceipes['Copper ingot'] == 3 &&
+    if (statReceipes['Iron ingot'] == 1000 &&
+        statReceipes['Copper ingot'] == 1000 &&
         currentResources.length <= 3) {
       currentResources.add(
         Resource(
@@ -122,9 +122,9 @@ class ResourceApp extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Resource(
-  //   name: 'coal',
-  //   quantity: 0,
-  //   color: '#000000',
-  //   picture: 'assets/images/coal.png')
+  void sortByTypeReceipe() {
+    print(inventory);
+    inventory.sort((a, b) => a.type.compareTo(b.type));
+    notifyListeners();
+  }
 }
