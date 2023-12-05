@@ -40,21 +40,24 @@ class _InventoryPageState extends State<InventoryPage> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: inventoryList.length,
               itemBuilder: (context, index) {
-                return Card(
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(inventoryList[index].name),
-                        subtitle: Text(
-                          inventoryList[index].description,
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: Text(inventoryList[index].name),
+                          subtitle: Text(
+                            inventoryList[index].description,
+                          ),
+                          leading: Image.asset(
+                            inventoryList[index].picture,
+                            width: 100,
+                            height: 100,
+                          ),
                         ),
-                        leading: Image.asset(
-                          inventoryList[index].picture,
-                          width: 100,
-                          height: 100,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

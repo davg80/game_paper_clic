@@ -61,11 +61,64 @@ Découpage de l'application
  
 ##  Références/Ressources
 - Liste des ressources qui ont servies
-##
+J'ai beaucoup utilisé ce que j'ai appris et ce que je connais comme je suis en cours de développement d'une application en flutter. J'ai utiliser la documentation.
+Pour le jeu, j'ai voulu partir d'une page blanche pour ne pas me laisser influencer et surtout me tester sur le niveau que j'ai actuellement sur cette technologie.
 
 ## Difficultés
-- Les difficultés rencontrées
+Mes difficultés sont externes au projet dans le sens où je n'ai pas le temps identique aux autres de part mes obligations parentales, mais cette application est une bonne opportunité de challenges..
 
+- Actuellement, je suis à la question 7. Je n'ai pas fait toutes les schémas de récupération de toutes les ressources.Les possibilités me semblent tellement infini.
+
+- Une autre difficulté a été la gestion des données et la complexité qu'elle comporte pour les rendre dynamique et les utiliser via le provider.
 
 ## Choix Design/Implémentation
 - Choix de conception
+
+## Les Ressources
+
+_RESSOURCES VIDES_
+
+![](imagesReadme/RessourcesVides.png)
+
+On arrive sur l'application, elle est vide.On a la possibilité de voir les quantités augmentées à mesure des clics sur les boutons.
+
+_RESSOURCES AJOUTEES_
+
+![](imagesReadme/RessourcesAjoutees.png)
+
+Le total s'incrémente au fur et à mesure des incrémentations des ressources.
+
+## Les Recettes
+
+_RESSOURCES NON DISPONIBLES_
+
+![](imagesReadme/RecettesEnAttente.png)
+
+On retrouve les ressources avec leurs couleurs d'origine. Un bouton pour l' accès à l'inventaire.
+
+_RESSOURCES DISPONIBLES_
+
+![](imagesReadme/RecettesAvecProduire.png)
+
+On a des boutons qui sont activés en fonction du nombre de ressources disponibles.
+Lorsque que l'on clique, le nombre de chaque ressource descend en fonction de la valeur.Il est immédiatement mis dans l'inventaire.
+
+## L'inventaire
+
+_INVENTAIRE VIDE_
+
+![](imagesReadme/InventaireVide.png)
+
+Notre inventaire est vide au départ. 
+
+_INVENTAIRE VIDE_
+
+![](imagesReadme/InventaireAvecRecettes.png)
+
+Il se rempli avec le symbole de la ressource et la description.
+
+## Options
+Ensuite, on a la possibilité d'avoir le charbon lors des 1000 lingots de cuivre et de fer.
+
+![](imagesReadme/RecettesAvecCharbon.png)
+

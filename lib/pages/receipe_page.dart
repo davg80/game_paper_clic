@@ -66,41 +66,44 @@ class _ReceipePageState extends State<ReceipePage> {
             child: ListView.builder(
               itemCount: receipes.length,
               itemBuilder: (context, index) {
-                return Card(
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(receipes[index].name),
-                        subtitle: Text(
-                          receipes[index].description,
-                        ),
-                        leading: Image.asset(
-                          receipes[index].picture,
-                          width: 100,
-                          height: 100,
-                        ),
-                        trailing: Tooltip(
-                          message: receipes[index].completed
-                              ? 'Produire'
-                              : 'En attente...',
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _addInInventoryList(
-                                  receipes[index], receipes[index].resources);
-                            },
-                            child: receipes[index].completed
-                                ? const Icon(
-                                    Icons.publish_outlined,
-                                    color: Colors.lightGreen,
-                                  )
-                                : const Icon(
-                                    Icons.unpublished_outlined,
-                                    color: Colors.redAccent,
-                                  ),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: Text(receipes[index].name),
+                          subtitle: Text(
+                            receipes[index].description,
+                          ),
+                          leading: Image.asset(
+                            receipes[index].picture,
+                            width: 100,
+                            height: 100,
+                          ),
+                          trailing: Tooltip(
+                            message: receipes[index].completed
+                                ? 'Produire'
+                                : 'En attente...',
+                            child: ElevatedButton(
+                              onPressed: () {
+                                _addInInventoryList(
+                                    receipes[index], receipes[index].resources);
+                              },
+                              child: receipes[index].completed
+                                  ? const Icon(
+                                      Icons.publish_outlined,
+                                      color: Colors.lightGreen,
+                                    )
+                                  : const Icon(
+                                      Icons.unpublished_outlined,
+                                      color: Colors.redAccent,
+                                    ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

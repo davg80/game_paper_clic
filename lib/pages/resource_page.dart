@@ -52,7 +52,7 @@ class _ResourceState extends State<ResourcePage> {
                     Provider.of<ResourceApp>(context).currentResources.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    width: 200,
+                    width: 100,
                     height: 200,
                     color: Color(int.parse(
                             resources[index].color!.substring(1, 7),
@@ -61,25 +61,23 @@ class _ResourceState extends State<ResourcePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Center(
-                          child: Column(children: [
-                            Image.asset(
-                              resources[index].picture!,
-                              width: 100,
-                              height: 100,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(
-                                  MediaQuery.of(context).size.width / 400),
-                              child: ElevatedButton(
+                        SizedBox(
+                          child: Center(
+                            child: Column(children: [
+                              Image.asset(
+                                resources[index].picture!,
+                                width: 30,
+                                height: 30,
+                              ),
+                              ElevatedButton(
                                 onPressed: () {
                                   _incrementCounter(index);
                                 },
                                 child:
                                     Text(resources[index].quantity.toString()),
-                              ),
-                            )
-                          ]),
+                              )
+                            ]),
+                          ),
                         )
                       ],
                     ),
