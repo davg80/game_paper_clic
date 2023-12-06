@@ -127,7 +127,7 @@ Ensuite, on a la possibilité d'avoir le charbon lors des 1000 lingots de cuivre
  if (statReceipes['Iron ingot'] == 1000 &&
         statReceipes['Copper ingot'] == 1000 &&
 ```
-![](imagesReadme/RecettesAvecCharbon.png)
+![](imagesReadme/RecetteAvecCharbon.png)
 
 ## Les systèmes de filtres
 
